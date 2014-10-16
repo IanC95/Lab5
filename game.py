@@ -52,7 +52,13 @@ def print_room_items(room):
     Note: <BLANKLINE> here means that doctest should expect a blank line.
 
     """
-    pass
+    if len(room["items"]) > 0:
+        itemString = "There is "
+        for key in room["items"]:
+            itemString = itemString + key["name"] + ", "
+
+        print(itemString[0:-2] + " here.")
+        print()
 
 
 def print_inventory_items(items):
@@ -122,14 +128,8 @@ def print_room(room):
     print(room["description"])
     print()
 
-    if len(room["items"]) != 0:
-        itemString = "There is "
-        for key in room["items"]:
-            itemString = itemString + key["name"] + ", "
-
-        print(itemString[0:-2] + " here.")
-        print()
-
+    print_room_items(room)
+    
 def exit_leads_to(exits, direction):
     """This function takes a dictionary of exits and a direction (a particular
     exit taken from this dictionary). It returns the name of the room into which
