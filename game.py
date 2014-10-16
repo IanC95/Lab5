@@ -25,11 +25,10 @@ def list_of_items(items):
 
     """
     listString = ""
-    for key in room["items"]:
+    for key in items:
         listString = listString + key["name"] + ", "
 
-    return(listString[0, -2]) #[0, -2] removes last ", "
-
+    return(listString[0: -2]) #[0: -2] removes last ", "
 
 def print_room_items(room):
     """This function takes a room as an input and nicely displays a list of items
