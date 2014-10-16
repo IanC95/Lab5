@@ -119,9 +119,15 @@ def print_room(room):
     print(room["description"])
     print()
 
-    #
-    # COMPLETE ME!
-    #
+    if len(room["items"]) != 0:
+        itemString = "There is "
+        for key in room["items"]:
+            itemString = itemString + key["name"] + ", "
+
+        print(itemString[0:-2] + " here.")
+        print()
+
+
 
 def exit_leads_to(exits, direction):
     """This function takes a dictionary of exits and a direction (a particular
