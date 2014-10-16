@@ -24,7 +24,11 @@ def list_of_items(items):
     'money, a student handbook, laptop'
 
     """
-    pass
+    listString = ""
+    for key in room["items"]:
+        listString = listString + key["name"] + ", "
+
+    return(listString[0, -2]) #[0, -2] removes last ", "
 
 
 def print_room_items(room):
@@ -126,8 +130,6 @@ def print_room(room):
 
         print(itemString[0:-2] + " here.")
         print()
-
-
 
 def exit_leads_to(exits, direction):
     """This function takes a dictionary of exits and a direction (a particular
