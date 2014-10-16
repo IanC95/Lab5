@@ -71,7 +71,15 @@ def print_inventory_items(items):
     <BLANKLINE>
 
     """
-    pass
+    if len(inventory) > 0:
+        itemString = "You have "
+        for key in inventory:
+            itemString = itemString + key["name"] + ", "
+
+        print(itemString[0:-2] + ".")
+        print()
+    else:
+        print("Mate, you don't own anything. That's really sad :(")
 
 
 def print_room(room):
