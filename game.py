@@ -26,7 +26,7 @@ def list_of_items(items):
     """
     listString = ""
     for key in items:
-        listString = listString + key["name"] + ", "
+        listString = listString + key["name"] + ", " #just adds all items to a string
 
     return(listString[0: -2]) #[0: -2] removes last ", "
 
@@ -52,12 +52,13 @@ def print_room_items(room):
     Note: <BLANKLINE> here means that doctest should expect a blank line.
 
     """
-    if len(room["items"]) > 0:
+
+    if len(room["items"]) > 0: #first checks if there are items in the list
         itemString = "There is "
         for key in room["items"]:
-            itemString = itemString + key["name"] + ", "
+            itemString = itemString + key["name"] + ", " #adds each item to a string
 
-        print(itemString[0:-2] + " here.")
+        print(itemString[0:-2] + " here.") #finishes the string formatting and prints it
         print()
 
 
@@ -71,15 +72,16 @@ def print_inventory_items(items):
     <BLANKLINE>
 
     """
-    if len(inventory) > 0:
+
+    if len(inventory) > 0: #checks that there are items in the list
         itemString = "You have "
         for key in inventory:
-            itemString = itemString + key["name"] + ", "
+            itemString = itemString + key["name"] + ", " #adds each item to the string
 
-        print(itemString[0:-2] + ".")
+        print(itemString[0:-2] + ".") #formatting
         print()
     else:
-        print("Mate, you don't own anything. That's really sad :(")
+        print("Mate, you don't own anything. That's really sad :(") #message if you have an empty inventory
 
 
 def print_room(room):
@@ -136,7 +138,7 @@ def print_room(room):
     print(room["description"])
     print()
 
-    print_room_items(room)
+    print_room_items(room) #prints the players inventory - also formats it properly
     
 def exit_leads_to(exits, direction):
     """This function takes a dictionary of exits and a direction (a particular
@@ -205,9 +207,15 @@ def print_menu(exits, room_items, inv_items):
         # Print the exit name and where it leads to
         print_exit(direction, exit_leads_to(exits, direction))
 
-    #
-    # COMPLETE ME!
-    #
+    # Iterate over available items in room
+    for items in room_items:
+        # Print the items you can pick up
+        print("TAKE " + items["id"].upper() + " to take " + items["name"] + ".")
+
+    # Iterate over available items in inventory
+    for items in inv_items:
+        # Print the items you can drop
+        print("Drop " + items["id"].upper() + " to drop your " + items["name"] + ".")
     
     print("What do you want to do?")
 
