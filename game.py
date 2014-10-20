@@ -254,7 +254,15 @@ def execute_take(item_id):
     there is no such item in the room, this function prints
     "You cannot take that."
     """
-    pass
+    count = 0
+    for key in current_room["items"]:
+        if key["id"] == item_id:
+            inventory.append(key)
+            del current_room["items"][count]
+        count += 1
+    if count == len(current_room["items"]):
+        print("You cannot take that")
+
     
 
 def execute_drop(item_id):
@@ -262,8 +270,14 @@ def execute_drop(item_id):
     player's inventory to list of items in the current room. However, if there is
     no such item in the inventory, this function prints "You cannot drop that."
     """
-    pass
-    
+    count = 0
+    for key in inventory:
+        if key["id"] == item_id:
+            current_room["items"].append(key)
+            del inventory[count]
+        count += 1
+    if count == len(inventory):
+        print("You cannot drop that.")
 
 def execute_command(command):
     """This function takes a command (a list of words as returned by
