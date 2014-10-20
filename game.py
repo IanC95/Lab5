@@ -245,6 +245,8 @@ def execute_go(direction):
     (and prints the name of the room into which the player is
     moving). Otherwise, it prints "You cannot go there."
     """
+    if is_valid_exit(exits, chosen_exit) == True:
+        print ("okay")
     pass
 
 
