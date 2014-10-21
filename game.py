@@ -4,6 +4,7 @@ from map import rooms
 from player import *
 from items import *
 from gameparser import *
+from combat import *
 
 
 
@@ -249,8 +250,7 @@ def execute_go(direction):
     """
     global current_room
     if is_valid_exit(current_room["exits"], direction) == True:
-        new_room = move(current_room["exits"], direction)
-        current_room = new_room
+        current_room = move(current_room["exits"], direction)
     else:
         print("You cannot go there...")
     
@@ -367,6 +367,8 @@ def main():
 
         # Execute the player's command
         execute_command(command)
+
+        begin_combat(health, 50)
 
 
 # Are we being run as a script? If so, run main().
