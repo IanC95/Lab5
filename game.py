@@ -245,7 +245,13 @@ def execute_go(direction):
     (and prints the name of the room into which the player is
     moving). Otherwise, it prints "You cannot go there."
     """
-    pass
+    global current_room
+    if is_valid_exit(current_room["exits"], direction) == True:
+        new_room = move(current_room["exits"], direction)
+        current_room = new_room
+    else:
+        print ("You cannot go there...")
+    #pass
 
 
 def execute_take(item_id):
