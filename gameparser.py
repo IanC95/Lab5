@@ -89,8 +89,3 @@ def normalise_input(user_input):
     filtered_words = filter_words(user_input.split(), skip_words)
 
     return filtered_words
-    
-    # Splits the string into a list of words
-
-    # COMPLETE ME!
-    #

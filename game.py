@@ -4,6 +4,7 @@ from map import rooms
 from player import *
 from items import *
 from gameparser import *
+from combat import *
 
 
 
@@ -256,6 +257,7 @@ def execute_go(direction):
     #pass
 
 
+
 def execute_take(item_id):
     """This function takes an item_id as an argument and moves this item from the
     list of items in the current room to the player's inventory. However, if
@@ -368,6 +370,8 @@ def main():
 
         # Execute the player's command
         execute_command(command)
+
+        begin_combat(health, 50)
 
 
 # Are we being run as a script? If so, run main().
