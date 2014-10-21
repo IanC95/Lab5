@@ -1,0 +1,19 @@
+Lost wallet and phone
+
+Get map from Robs first.
+might have to fight PhD students but only weak - They try to delay you
+Average PhD student damage is 20
+Every move is 5 mins, you have 1 hour (24 moves).
+Got to pick up everything before going to lecture
+if you're late for lecture you have to fight Kirill
+
+Combat system - 
+
+PhD - 50 health
+Player - 200 health
+Kirill - 150 health
+
+punch 1 per turn - 3-7 damage
+kick 1 per 2 turns - 10-15 damage
+headbut 1 per 3 turns - 20-30 damage, half of damage done to you (i.e. if you do 26 damage to the PhD student,
+you have 13 damage done to self)
