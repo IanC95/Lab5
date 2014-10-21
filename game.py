@@ -4,6 +4,7 @@ from map import rooms
 from player import *
 from items import *
 from gameparser import *
+from combat import *
 
 
 
@@ -60,7 +61,7 @@ def print_room_items(room):
 
         print(itemString[0:-2] + " here.") #finishes the string formatting and prints it
         print()
-
+    
 
 def print_inventory_items(items):
     """This function takes a list of inventory items and displays it nicely, in a
@@ -82,6 +83,7 @@ def print_inventory_items(items):
         print()
     else:
         print("Mate, you don't own anything. That's really sad :(") #message if you have an empty inventory
+        print()
 
 
 def print_room(room):
@@ -139,6 +141,7 @@ def print_room(room):
     print()
 
     print_room_items(room) #prints the players inventory - also formats it properly
+
     
 def exit_leads_to(exits, direction):
     """This function takes a dictionary of exits and a direction (a particular
@@ -254,6 +257,7 @@ def execute_go(direction):
     #pass
 
 
+
 def execute_take(item_id):
     """This function takes an item_id as an argument and moves this item from the
     list of items in the current room to the player's inventory. However, if
@@ -270,7 +274,6 @@ def execute_take(item_id):
         print("You cannot take that")
 
     
-
 def execute_drop(item_id):
     """This function takes an item_id as an argument and moves this item from the
     player's inventory to list of items in the current room. However, if there is
@@ -284,6 +287,7 @@ def execute_drop(item_id):
         count += 1
     if count == len(inventory):
         print("You cannot drop that.")
+
 
 def execute_command(command):
     """This function takes a command (a list of words as returned by
@@ -367,6 +371,7 @@ def main():
         # Execute the player's command
         execute_command(command)
 
+        begin_combat(health, 50)
 
 
 # Are we being run as a script? If so, run main().
@@ -374,4 +379,3 @@ def main():
 # See https://docs.python.org/3.4/library/__main__.html for explanation
 if __name__ == "__main__":
     main()
-
