@@ -253,7 +253,7 @@ def execute_go(direction):
         current_room = move(current_room["exits"], direction)
     else:
         print("You cannot go there...")
-    
+
 
 def execute_take(item_id):
     """This function takes an item_id as an argument and moves this item from the
