@@ -4,8 +4,12 @@ from map import rooms
 from player import *
 from items import *
 from gameparser import *
+from combat import *
+import pygame
+pygame.init()
 
 
+theLecturer = "Kirill"
 
 def list_of_items(items):
     """This function takes a list of items (see items.py for the definition) and
@@ -252,8 +256,10 @@ def execute_go(direction):
         new_room = move(current_room["exits"], direction)
         current_room = new_room
     else:
-        print("You cannot go there...")
-    
+        print ("You cannot go there...")
+    #pass
+
+
 
 def execute_take(item_id):
     """This function takes an item_id as an argument and moves this item from the
@@ -352,9 +358,30 @@ def move(exits, direction):
     # Next room to go to
     return rooms[exits[direction]]
 
+def display_image():
+    img = pygame.image.load('phone.jpg')
+
+    white = (255, 64, 64)
+    w = 640
+    h = 480
+    screen = pygame.display.set_mode((w, h))
+    scren.fill((white))
+    running = 1
+
+    while running:
+        screen.fill((white))
+        screen.blit(img,(0,0))
+        pygame.display.flip()
+
+
+
+
+
+
 
 # This is the entry point of our program
 def main():
+    display_image()
 
     # Main game loop
     while True:
@@ -367,6 +394,9 @@ def main():
 
         # Execute the player's command
         execute_command(command)
+
+        begin_combat(health, 50)
+
 
 
 # Are we being run as a script? If so, run main().
