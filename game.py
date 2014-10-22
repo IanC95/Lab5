@@ -263,17 +263,23 @@ def execute_go(direction):
             health = 200
         else:
             health += 10
+
         amountOfMoves += 1
+        
         current_room = move(current_room["exits"], direction)
-        if current_room["name"] == "the lecture theatre" and (amountOfMoves < 9 or len(inventory) < 5):
+        if current_room["name"] == "the lecture theatre" and (amountOfMoves < 9 and len(inventory) < 5):
             print("You cannot go here until you have all the items!")
             current_room = rooms["Tutor"]
             amountOfMoves -= 1
         if (random.randrange(0, 3) == 0) and not(current_room["name"] == "the lecture theatre"): # 1:4 chance of coming across a PhD student
             begin_combat(health, 50, "The PhD student")
+            amountOfMoves += 1
+            pass
+        if amountOfMoves == 9:
+            print("---You're late for you lecture! Quick, go now before it's too late---")
     else:
         print ("You cannot go there...")
-    
+    print(str(amountOfMoves < 9) + " | " + str(len(inventory) < 5))
 
 def execute_take(item_id):
     """This function takes an item_id as an argument and moves this item from the
@@ -289,6 +295,8 @@ def execute_take(item_id):
         count += 1
     if count == len(current_room["items"]):
         print("You cannot take that")
+    if amountOfMoves >= 9:
+        print("---You don't need to pick up anymore items, just get to the lecture!---")
 
     
 def execute_drop(item_id):
@@ -301,6 +309,8 @@ def execute_drop(item_id):
         if key["id"] == item_id:
             current_room["items"].append(key)
             del inventory[count]
+            print()
+            print("You dropped " + key["name"] + ".")
         count += 1
     if count == len(inventory):
         print("You cannot drop that.")
@@ -322,6 +332,17 @@ def execute_view(item_id):
             screen.fill((white))
             screen.blit(img,(0,0))
             pygame.display.flip()
+
+    '''print("""                     -----------------         -----------
+               ------|   Reception   |---------|  Tutor  |
+   ---------   |     -----------------         -----------
+---|Parking|----             |                      |
+|  ---------                 |                      |
+|                      --------------       -----------------
+| ----------------     |    Robs    |       |Lecture Theatre|
+--|General Office|     --------------       -----------------
+  ----------------
+""")''' # Just here as a placeholder in case we can't get pygame to work
 
 
 def execute_command(command):
@@ -425,8 +446,6 @@ def main():
 
         if current_room["name"] == "the lecture theatre":
             begin_combat(health, 150, theLecturer)
-
-        amountOfMoves += 1
 
 
 # Are we being run as a script? If so, run main().
