@@ -6,7 +6,7 @@ from items import *
 from gameparser import *
 from combat import *
 
-
+theLecturer = "Kirill"
 
 def list_of_items(items):
     """This function takes a list of items (see items.py for the definition) and
