@@ -1,5 +1,6 @@
 from player import *
 from gameparser import *
+from game import *
 
 import random
 
@@ -9,10 +10,14 @@ playerAttack = {"punch": [True, 3, 7, 0], "kick": [True, 10, 15, 0], "headbutt":
 enemyAttack = {"punch": [True, 3, 7, 0], "kick": [True, 10, 15, 0], "headbutt": [True, 20, 30, 0]}
 
 
-def begin_combat(player_health, enemy_health):
+def begin_combat(player_health, enemy_health, enemy_name):
+	global running
+	playerAttack = {"punch": [True, 3, 7, 0], "kick": [True, 10, 15, 0], "headbutt": [True, 20, 30, 0]}
+	enemyAttack = {"punch": [True, 3, 7, 0], "kick": [True, 10, 15, 0], "headbutt": [True, 20, 30, 0]}
 	while (player_health > 0) and (enemy_health > 0):
-
-		print("Your foe has " + str(enemy_health) + " and you have " + str(player_health) + " health.")
+		print()
+		print("An angry " + enemy_name + " is about to attack you!")
+		print(enemy_name + " has " + str(enemy_health) + " and you have " + str(player_health) + " health.")
 		print()
 		print("Do you want to...")
 		print("PUNCH")
@@ -26,7 +31,7 @@ def begin_combat(player_health, enemy_health):
 		if is_valid_attack(player_input) == True:
 			print()
 			playerAttackDamage = random.randrange(playerAttack[player_input][1], playerAttack[player_input][2])
-			print("You " + player_input + "ed the enemy and did " + str(playerAttackDamage) + " damage to the enemy!")
+			print("You " + player_input + "ed " + enemy_name + " and did " + str(playerAttackDamage) + " damage to the enemy!")
 			enemy_health = enemy_health - playerAttackDamage
 
 			if player_input == "headbutt":
@@ -35,7 +40,7 @@ def begin_combat(player_health, enemy_health):
 			if enemy_health > 0:
 				enemy_input = enemy_attack(enemy_health) # Enemy health needed so the enemy doesn't kill itself by headbutting the player!
 				enemyAttackDamage = random.randrange(enemyAttack[enemy_input][1], enemyAttack[enemy_input][2])
-				print("The enemy " + enemy_input + "ed you and did " + str(enemyAttackDamage) + " damage to you!")
+				print(enemy_name + " " + enemy_input + "ed you and did " + str(enemyAttackDamage) + " damage to you!")
 				player_health = player_health - enemyAttackDamage
 
 				if enemy_input == "headbutt":
@@ -59,9 +64,11 @@ def begin_combat(player_health, enemy_health):
 			print("That is not a valid attack.")
 
 	if player_health <= 0:
-		print("Oh no, the enemy " + enemy_input + "ed you so hard you died")
+		print("Oh no, " + enemy_name + " " + enemy_input + "ed you so hard you died")
 	else:
-		print("Congratulations, you defeated the enemy!")
+		print("Congratulations, you defeated " + enemy_name + "!")
+		if enemy_name == theLecturer:
+			running = False
 	health = player_health
 
 def enemy_attack(enemy_health):

@@ -9,7 +9,11 @@ import pygame
 pygame.init()
 
 
-theLecturer = "Kirill"
+import random
+
+theLecturer = "Matt"
+amountOfMoves = 0
+running = True
 
 def list_of_items(items):
     """This function takes a list of items (see items.py for the definition) and
@@ -252,14 +256,24 @@ def execute_go(direction):
     moving). Otherwise, it prints "You cannot go there."
     """
     global current_room
+    global amountOfMoves
+    global health
     if is_valid_exit(current_room["exits"], direction) == True:
-        new_room = move(current_room["exits"], direction)
-        current_room = new_room
+        if health > 190:
+            health = 200
+        else:
+            health += 10
+        amountOfMoves += 1
+        current_room = move(current_room["exits"], direction)
+        if current_room["name"] == "the lecture theatre" and (amountOfMoves < 9 or len(inventory) < 5):
+            print("You cannot go here until you have all the items!")
+            current_room = rooms["Tutor"]
+            amountOfMoves -= 1
+        if (random.randrange(0, 3) == 0) and not(current_room["name"] == "the lecture theatre"): # 1:4 chance of coming across a PhD student
+            begin_combat(health, 50, "The PhD student")
     else:
         print ("You cannot go there...")
-    #pass
-
-
+    
 
 def execute_take(item_id):
     """This function takes an item_id as an argument and moves this item from the
@@ -292,6 +306,24 @@ def execute_drop(item_id):
         print("You cannot drop that.")
 
 
+def execute_view(item_id):
+    if item_id == "map":
+
+        img = pygame.image.load('phone.jpg')
+
+        white = (255, 64, 64)
+        w = 640
+        h = 480
+        screen = pygame.display.set_mode((w, h))
+        scren.fill((white))
+        running = 1
+
+        while running:
+            screen.fill((white))
+            screen.blit(img,(0,0))
+            pygame.display.flip()
+
+
 def execute_command(command):
     """This function takes a command (a list of words as returned by
     normalise_input) and, depending on the type of action (the first word of
@@ -316,6 +348,12 @@ def execute_command(command):
             execute_drop(command[1])
         else:
             print("Drop what?")
+
+    elif command[0] == "view":
+        if len(command) > 1:
+            execute_view(command[1])
+        else:
+            print("View what?")
 
     else:
         print("This makes no sense.")
@@ -358,33 +396,23 @@ def move(exits, direction):
     # Next room to go to
     return rooms[exits[direction]]
 
-def display_image():
-    img = pygame.image.load('phone.jpg')
-
-    white = (255, 64, 64)
-    w = 640
-    h = 480
-    screen = pygame.display.set_mode((w, h))
-    scren.fill((white))
-    running = 1
-
-    while running:
-        screen.fill((white))
-        screen.blit(img,(0,0))
-        pygame.display.flip()
-
-
-
-
-
-
 
 # This is the entry point of our program
 def main():
-    display_image()
+    
+    global amountOfMoves
+    
+    print()
+    print("---Welcome to License to Kirill---")
+    print()
+    print("You need to go and collect all your items, this includes a map,\nyour wallet, your keys and your student handbook")
+    print()
+    print("Are you ready to play?")
+    input()
+
 
     # Main game loop
-    while True:
+    while running:
         # Display game status (room description, inventory etc.)
         print_room(current_room)
         print_inventory_items(inventory)
@@ -395,8 +423,10 @@ def main():
         # Execute the player's command
         execute_command(command)
 
-        begin_combat(health, 50)
+        if current_room["name"] == "the lecture theatre":
+            begin_combat(health, 150, theLecturer)
 
+        amountOfMoves += 1
 
 
 # Are we being run as a script? If so, run main().
