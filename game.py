@@ -5,8 +5,8 @@ from player import *
 from items import *
 from gameparser import *
 from combat import *
-import pygame
-pygame.init()
+#import pygame
+#pygame.init()
 
 
 import random
