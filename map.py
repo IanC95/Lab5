@@ -13,7 +13,7 @@ south and east. The exit is to the west.""",
 
     "exits": {"south": "Robs", "east": "Tutor", "west": "Parking"},
 
-    "items": [item_biscuits, item_handbook]
+    "items": []
 }
 
 room_robs = {
@@ -26,7 +26,7 @@ ignore you. To the north is the reception.""",
 
     "exits":  {"north": "Reception"},
 
-    "items": []
+    "items": [item_map]
 }
 
 room_tutor = {
@@ -36,11 +36,12 @@ room_tutor = {
     """You are in your personal tutor's office. He intently
 stares at his huge monitor, ignoring you completely.
 On the desk you notice a cup of coffee and an empty
-pack of biscuits. The reception is to the west.""",
+pack of biscuits. The reception is to the west and the
+lecture theatre is to the south.""",
 
-    "exits": {"west": "Reception"},
+    "exits": {"west": "Reception", "south": "Lecture"},
 
-    "items": []
+    "items": [item_handbook]
 }
 
 room_parking = {
@@ -53,7 +54,7 @@ general office.""",
 
     "exits": {"east": "Office", "south": "Reception"},
 
-    "items": []
+    "items": [item_keys]
 }
 
 room_office = {
@@ -67,9 +68,24 @@ Queen's Buildings.""",
 
     "exits": {"west": "Parking"},
 
-    "items": [item_pen]
+    "items": [item_wallet]
 }
 
+room_lecture = {
+    "name": "the lecture theatre",
+
+    "description":
+    """You are standing in a grand room, there are many
+seats. Kirill stares at you with a deep loathing,
+you tremble with fear as Kirill's eyes burn into
+your soul. You have no escape, Kirill screams and
+charges at you. You prepare yourself for the
+onslaught.""",
+
+    "exits": {},
+
+    "items": []
+}
 
 
 rooms = {
@@ -77,5 +93,6 @@ rooms = {
     "Robs": room_robs,
     "Tutor": room_tutor,
     "Parking": room_parking,
-    "Office": room_office
+    "Office": room_office,
+    "Lecture": room_lecture
 }

@@ -4,42 +4,37 @@ item_id = {
     "name": "id card",
 
     "description":
-    """You new shiny student ID card. Expires 1 June 2017.
+    """Your new shiny student ID card. Expires 1 June 2017.
 You wonder why they have printed a suicide hotline number on it?..."""
 }
 
-item_laptop = {
-    "id": "laptop",
+item_map = {
+    "id": "map",
 
-    "name": "laptop",
-
-    "description":
-    "It has seen better days. At least it has a WiFi card!"
-}
-
-item_money = {
-    "id": "money",
-
-    "name": "money",
+    "name" : "map",
 
     "description":
-    "This wad of cash is barely enough to pay your tuition fees."
+    """A map of the computer science building, it tells you how to
+get to the places you need to go!"""
+} 
+
+item_wallet = {
+    "id": "wallet",
+
+    "name": "wallet",
+
+    "description":
+    """Your wallet, it contains all of your precious money."""
 }
 
-item_biscuits = {
-    "id": "biscuits",
+item_keys = {
+    "id": "keys",
 
-    "name": "a pack of biscuits",
+    "name": "keys",
 
-    "description": "A pack of biscuits."
-}
-
-item_pen = {
-    "id": "pen",
-    
-    "name": "a pen",
-
-    "description": "A basic ballpoint pen."
+    "description":
+    """Your flat keys, these are very important. You don't want
+to pay £20 for another pair!"""
 }
 
 item_handbook = {
