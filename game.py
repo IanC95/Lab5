@@ -5,6 +5,9 @@ from player import *
 from items import *
 from gameparser import *
 from combat import *
+import pygame
+pygame.init()
+
 
 import random
 
@@ -269,8 +272,8 @@ def execute_go(direction):
         if (random.randrange(0, 3) == 0) and not(current_room["name"] == "the lecture theatre"): # 1:4 chance of coming across a PhD student
             begin_combat(health, 50, "The PhD student")
     else:
-        print("You cannot go there...")
-
+        print ("You cannot go there...")
+    
 
 def execute_take(item_id):
     """This function takes an item_id as an argument and moves this item from the
@@ -304,8 +307,21 @@ def execute_drop(item_id):
 
 
 def execute_view(item_id):
-    pass
-    ### DISPLAY MAP ###
+    if item_id == "map":
+
+        img = pygame.image.load('phone.jpg')
+
+        white = (255, 64, 64)
+        w = 640
+        h = 480
+        screen = pygame.display.set_mode((w, h))
+        scren.fill((white))
+        running = 1
+
+        while running:
+            screen.fill((white))
+            screen.blit(img,(0,0))
+            pygame.display.flip()
 
 
 def execute_command(command):
@@ -383,10 +399,9 @@ def move(exits, direction):
 
 # This is the entry point of our program
 def main():
-
+    
     global amountOfMoves
-    # Main game loop
-
+    
     print()
     print("---Welcome to License to Kirill---")
     print()
@@ -395,6 +410,8 @@ def main():
     print("Are you ready to play?")
     input()
 
+
+    # Main game loop
     while running:
         # Display game status (room description, inventory etc.)
         print_room(current_room)
@@ -410,6 +427,7 @@ def main():
             begin_combat(health, 150, theLecturer)
 
         amountOfMoves += 1
+
 
 # Are we being run as a script? If so, run main().
 # '__main__' is the name of the scope in which top-level code executes.
