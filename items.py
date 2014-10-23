@@ -44,3 +44,11 @@ item_handbook = {
 
     "description": "This student handbook explains everything. Seriously."
 }
+
+item_bass = {
+    "id": "bass",
+
+    "name": "a sick beat",
+
+    "description": "This bass is the bomb"
+}

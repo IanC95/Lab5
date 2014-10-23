@@ -52,7 +52,7 @@ room_parking = {
 You can go south to the COMSC reception, or east to the
 general office.""",
 
-    "exits": {"east": "Office", "south": "Reception"},
+    "exits": {"east": "Reception", "south": "Office"},
 
     "items": [item_keys]
 }
@@ -66,7 +66,7 @@ room_office = {
 in their eyes. If you go west you can return to the
 Queen's Buildings.""",
 
-    "exits": {"west": "Parking"},
+    "exits": {"north": "Parking"},
 
     "items": [item_wallet]
 }

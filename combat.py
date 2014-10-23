@@ -11,7 +11,6 @@ enemyAttack = {"punch": [True, 3, 7, 0], "kick": [True, 10, 15, 0], "headbutt": 
 
 
 def begin_combat(player_health, enemy_health, enemy_name):
-	global running
 	playerAttack = {"punch": [True, 3, 7, 0], "kick": [True, 10, 15, 0], "headbutt": [True, 20, 30, 0]}
 	enemyAttack = {"punch": [True, 3, 7, 0], "kick": [True, 10, 15, 0], "headbutt": [True, 20, 30, 0]}
 	while (player_health > 0) and (enemy_health > 0):
@@ -26,12 +25,12 @@ def begin_combat(player_health, enemy_health, enemy_name):
 		if playerAttack["headbutt"][0] == True:
 			print("HEADBUTT")
 
-		player_input = (input("> "))
-
+		player_input = str(normalise_input(input("> ")))[2:-2] #normailse_input returns a list of normailsed words, this is converted into a string and the list structure is removed
+		
 		if is_valid_attack(player_input) == True:
 			print()
 			playerAttackDamage = random.randrange(playerAttack[player_input][1], playerAttack[player_input][2])
-			print("You " + player_input + "ed " + enemy_name + " and did " + str(playerAttackDamage) + " damage to the enemy!")
+			print("You " + player_input + "ed " + enemy_name + " and did " + str(playerAttackDamage) + " damage to them!")
 			enemy_health = enemy_health - playerAttackDamage
 
 			if player_input == "headbutt":
@@ -68,6 +67,7 @@ def begin_combat(player_health, enemy_health, enemy_name):
 	else:
 		print("Congratulations, you defeated " + enemy_name + "!")
 		if enemy_name == theLecturer:
+			input()
 			running = False
 	health = player_health
 
