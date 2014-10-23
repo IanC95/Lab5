@@ -5,13 +5,14 @@ from player import *
 from items import *
 from gameparser import *
 from combat import *
-import pygame
+import pygame # library used for game development
+from pygame import mixer #used to play sounds
 pygame.init()
 
 
 import random
 
-theLecturer = "Matt"
+theLecturer = "Kirill"
 amountOfMoves = 0
 running = True
 
@@ -311,6 +312,10 @@ def execute_drop(item_id):
             del inventory[count]
             print()
             print("You dropped " + key["name"] + ".")
+        if item_id == "bass":
+            mixer.init()
+            mixer.music.load('Super Bass Drop.mp3')
+            mixer.music.play()
         count += 1
     if count == len(inventory):
         print("You cannot drop that.")
