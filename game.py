@@ -5,8 +5,8 @@ from player import *
 from items import *
 from gameparser import *
 from combat import *
-#import pygame
-#pygame.init()
+import pygame
+pygame.init()
 
 
 import random
@@ -319,19 +319,19 @@ def execute_drop(item_id):
 def execute_view(item_id):
     if item_id == "map":
 
-        img = pygame.image.load('phone.jpg')
+        img = pygame.image.load('shapes.jpg')
 
         white = (255, 64, 64)
         w = 640
         h = 480
         screen = pygame.display.set_mode((w, h))
-        scren.fill((white))
+        screen.fill((white))
         running = 1
 
-        while running:
-            screen.fill((white))
-            screen.blit(img,(0,0))
-            pygame.display.flip()
+        screen.fill((white))
+        screen.blit(img,(0,0))
+        pygame.display.flip()
+        pygame.event.wait()
 
     '''print("""                     -----------------         -----------
                ------|   Reception   |---------|  Tutor  |
